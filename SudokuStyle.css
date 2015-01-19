@@ -18,6 +18,10 @@
 
 input[type="text"] {
   border: none;
+  width: 30px;
+  top: 5px;
+  text-align: center;
+  font-size: 24px;
 }
 
 #court
