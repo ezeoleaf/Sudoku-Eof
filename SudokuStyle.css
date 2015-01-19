@@ -1,0 +1,91 @@
+.brick
+{
+	position: absolute;
+	height:30px;
+	width:30px;
+	background-color:#CCC;
+	border: solid #AAA 1px;
+	text-align: center;
+}
+
+.light
+{
+	height:3px;
+	width:15px;
+	background-color:#D9D9D9;
+	/*opacity:0.2;*/
+}
+
+input[type="text"] {
+  border: none;
+}
+
+#court
+{
+	position: absolute;
+	left: 0px;
+	top: 52px;
+	width: 288px;
+	height: 288px;
+	background: #cccccc;
+	border: solid 2px black;
+}
+
+
+#headCourt
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 288px;
+	height: 50px;
+	background: #cccccc;
+	border: solid 2px black;
+}
+
+#player
+{
+	position: absolute;
+	left: 50px;
+	top: 5px;	
+	height: 20px;
+	text-align: center;
+}
+
+#playerText
+{
+	font-family: Arial;
+	font-size: 14px;	
+}
+
+#reset
+{
+	position: absolute;
+	left: 119px;
+	top: 14px;	
+	width: 50px;
+	height: 20px;		
+}
+
+#computer
+{
+	position: absolute;
+	left: 450px;
+	top: 5px;	
+	text-align: center;
+	height: 20px;
+}
+
+#computerText
+{
+	font-family: Arial;
+	font-size: 14px;
+}
+
+#testClick
+{
+	position: absolute;
+	left: 0px;
+	height: 0px;
+	color: red;
+}
