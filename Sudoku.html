@@ -75,7 +75,7 @@ function getGame()
 	exit = 0;
 	do
 	{
-		randomGame = (1 + Math.floor(Math.random() * 100));
+		randomGame = (Math.floor(Math.random() * 3));
 		if($.inArray(randomGame,playedGames) == -1)
 		{
 			exit = 1;
@@ -88,9 +88,9 @@ function loadValues(numberOfGame)
 {
 	countOfValue = 0;
 	var vGame = games[numberOfGame];
-	for(var i = 1; i <= 9; i++)
+	for(var i = 0; i <= 8; i++)
 	{
-		for(var j = 1; j <= 9; j++)
+		for(var j = 0; j <= 8; j++)
 		{
 			tempNameIAndJ = '#brick'+i.toString()+'-'+j.toString();
 			if(vGame[countOfValue] != 0)
@@ -106,47 +106,6 @@ function loadValues(numberOfGame)
 		}
 	}
 }
-function loadValues2()
-{
-	countOfValue = 0;
-	//var vGame = games[numberOfGame];
-	for(var i = 0 ; i <= 2; i++)
-	{
-		for(var j = 0; j <= 2; j++)
-		{
-			tempNameIAndJ = '#brick'+i.toString()+'-'+j.toString();
-			if(games[countOfValue] != 0)
-			{
-				$(tempNameIAndJ).html('<input class="valueOfBrick" type="text" value="'+games[countOfValue]+'" disabled style="background: #CCC;"/>');
-			}
-			else
-			{
-				$(tempNameIAndJ).html('<input class="valueOfBrick" type="text" value="" style="background: #BBB;" maxlength="1" onKeyDown="winControl"/>');
-				$(tempNameIAndJ).children('input').keyup(winControl);
-			}
-			countOfValue++;
-		}
-	}
-	/*
-	for(var i = 1; i <= 9; i++)
-	{
-		for(var j = 1; j <= 9; j++)
-		{
-			tempNameIAndJ = '#brick'+i.toString()+'-'+j.toString();
-			if(games[countOfValue] != 0)
-			{
-				$(tempNameIAndJ).html('<input class="valueOfBrick" type="text" value="'+games[countOfValue]+'" disabled style="background: #CCC;"/>');
-			}
-			else
-			{
-				$(tempNameIAndJ).html('<input class="valueOfBrick" type="text" value="" style="background: #BBB;" maxlength="1" onKeyDown="winControl"/>');
-				$(tempNameIAndJ).children('input').keyup(winControl);
-			}
-			countOfValue++;
-		}
-	}
-	*/
-}
 
 function loadGames()
 {
@@ -156,8 +115,9 @@ function loadGames()
 	solution[1] = [9,8,3,4,1,7,5,6,2,6,4,1,8,2,5,9,7,3,5,7,2,6,9,3,8,1,4,3,6,9,1,7,2,4,5,8,4,1,7,5,8,9,3,2,6,8,2,5,3,6,4,7,9,1,1,3,6,7,5,8,2,4,9,7,9,4,2,3,6,1,8,5,2,5,8,9,4,1,6,3,7];
 	games[2] = [1,0,0,0,0,8,0,0,9,0,0,2,0,0,0,0,0,8,0,8,0,5,4,9,0,0,0,0,4,0,2,0,0,9,0,0,3,0,9,0,0,0,2,0,1,0,0,1,0,0,5,0,4,0,0,0,0,9,1,2,0,3,0,7,0,0,0,0,0,1,0,0,2,0,0,7,0,4,0,0,6];
 	solution[2] = [1,3,4,6,2,8,5,7,9,9,5,2,1,3,7,4,6,8,6,8,7,5,4,9,3,1,2,5,4,6,2,7,1,9,8,3,3,7,9,4,8,6,2,5,1,8,2,1,3,9,5,6,4,7,4,6,8,9,1,2,7,3,5,7,9,5,8,6,3,1,2,4,2,1,3,7,5,4,8,9,6];
-	games[3] = [];
-	solution[3] = [];
+	/*
+	games[3] = [5,1,0,0,0,0,7,4,0,0,6,9,0,8,7,0,0,0,2,0,7,0,0,0,0,0,0,0,0,0,0,2,9,6,0,0,1,0,0,6,0,3,0,0,8,0,0,3,8,4,0,0,0,0,0,0,0,0,0,0,9,0,6,0,0,0,4,6,0,2,8,0,0,2,6,0,0,0,0,1,4];
+	solution[3] = [5,1,8,9,3,6,7,4,2,4,6,9,2,8,7,3,5,1,2,3,7,5,1,4,8,6,9,7,8,4,1,2,9,6,3,5,1,5,2,6,7,3,4,9,8,6,9,3,8,4,5,1,2,7,8,4,1,3,5,2,9,7,6,9,7,5,4,6,1,2,8,3,3,2,6,7,9,8,5,1,4];
 	games[4] = [];
 	solution[4] = [];
 	games[1] = [];
@@ -252,188 +212,20 @@ function loadGames()
 	solution[1] = [];
 	games[1] = [];
 	solution[1] = [];
-	
-}
-
-function formatString(stringToFormat)
-{
-	vStringToFormat = stringToFormat.split('-');
-	for(var i = 0; i < 9; i++)
-	{
-	
-	}
-	for(var i = 1; i < vStringToFormat.length; i++)
-	{
-		games.push(vStringToFormat[i]);
-	}
-}
-
-var vFile = [];
-var vFileValue = [];
-var vColumn = [];
-var vColumnValue = [];
-
-function generateSudoku()
-{
-	
-	sudokuReady = 0;
-	/*
-	var vFile = [];
-	var vFileValue = [];
-	var vColumn = [];
-	var vColumnValue = [];
 	*/
-	var lastCameUp = [];
-	var vGrid = [];
-	sudokuString = "";
-	for(var i = 0; i <= 2; i++)
-	{
-		for(var j = 0; j <= 2; j++)
-		{
-			if($.inArray(i,vFile) == -1)
-			{
-				positionInArrayFile = i;
-				vFile.push(i);
-				vFileValue.push("0,0,0,0,0,0,0,0,0");
-			}
-			else
-			{
-				positionInArrayFile = $.inArray(i,vFile);
-			}
-			if($.inArray(j,vColumn) == -1)
-			{
-				positionInArrayColumn = j;
-				vColumn.push(j);
-				vColumnValue.push("0,0,0,0,0,0,0,0,0");
-			}
-			else
-			{
-				positionInArrayColumn = $.inArray(j,vColumn);
-			}
-			exitDo = 0;
-			do
-			{
-				randomNumber = (1 + Math.floor(Math.random() * 9));
-				if($.inArray(randomNumber, lastCameUp) == -1)
-				{
-					lastCameUp.push(randomNumber);
-					exitDo = 1;
-				}
-			} while (exitDo == 0);
-			
-			if(lastCameUp.length > 3)
-			{
-				lastCameUp.splice(0,1);
-			}
-			
-			if($.inArray(randomNumber,vGrid) == -1)
-			{
-				fileToDecode = vFileValue[positionInArrayFile];
-				columnToDecode = vColumnValue[positionInArrayColumn];
-				if((decodeFile(randomNumber,fileToDecode,positionInArrayFile) == true) && (decodeColumn(randomNumber, columnToDecode,positionInArrayColumn) == true))
-				{
-					vGrid.push(randomNumber);
-					sudokuString += randomNumber + '-';
-				}
-				else
-				{
-					if(j != 0)
-					{
-						j--;
-					}
-					else
-					{
-						i--;
-						break;
-					}
-				}
-			}
-			else
-			{
-				if(j != 0)
-				{
-					j--;
-				}
-				else
-				{
-					i--;
-					break;
-				}
-			}
-		}
-	}
-	
-	
-	formatString(sudokuString);
 }
 
-function decodeFile(number, file, posFileValue)
-{
-	var vFileTemp = file.split(',');
-	if($.inArray((number.toString()),vFileTemp) != -1)
-	{
-		return false;
-	}
-	else
-	{
-		positionToReplace = $.inArray("0",vFileTemp);
-		vFileTemp[positionToReplace] = number.toString();
-	}
-	stringToFileValue = "";
-	for(var i = 0; i <= 8; i++)
-	{
-		if(i == 0)
-		{
-			stringToFileValue = vFileTemp[i];
-		}
-		if(i != 0)
-		{
-			stringToFileValue += ','+vFileTemp[i];
-		}
-	}
-	vFileValue[posFileValue] = stringToFileValue;
-	return true;
-}
-
-function decodeColumn(number, column, posColumnValue)
-{
-	var vColumnTemp = column.split(',');
-	if($.inArray((number.toString()), vColumnTemp) != -1)
-	{
-		return false;
-	}
-	else
-	{
-		positionToReplace = $.inArray("0",vColumnTemp);
-		vColumnTemp[positionToReplace] = number.toString();
-	}
-	stringToColumnValue = "";
-	for(var i = 0; i <= 8; i++)
-	{
-		if(i == 0)
-		{
-			stringToColumnValue = vColumnTemp[i];
-		}
-		if(i != 0)
-		{
-			stringToColumnValue += ','+vColumnTemp[i];
-		}
-	}
-	vColumnValue[posColumnValue] = stringToColumnValue;
-	return true;
-}
 
 function newGame()
 {
-	generateSudoku();
 	posBrick_x = 0;
 	posBrick_y = 0;
 	selectedGame = 0;
 	loadBrick();
-	//loadGames();
-	//loadValues(getGame());
+	loadGames();
+	loadValues(getGame());
 	//loadValues(selectedGame);
-	loadValues2();
+	//loadValues2();
 }
 
 function winControl()
